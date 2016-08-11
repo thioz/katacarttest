@@ -22,12 +22,13 @@
 		],
 		"psr-4": {
 			"App\\": "app/",
-			"Kata\\": "vendor/thioz/katacart/src"
+			"Kata\\": "vendor/thioz/katacart/src/Kata"
 		}
 	},
 	"autoload-dev": {
 		"classmap": [
-			"tests/TestCase.php"
+			"tests/TestCase.php",
+			"tests/CartTestCase.php"
 		]
 	},
 	"repositories": [

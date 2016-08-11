@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/cart', ['uses' => 'CartController@index']);
+Route::get('/rules', ['uses' => 'RulesController@index']);
