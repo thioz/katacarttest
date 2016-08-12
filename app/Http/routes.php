@@ -12,8 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('demo.index');
 });
 
 Route::get('/cart', ['uses' => 'CartController@index']);
 Route::get('/rules', ['uses' => 'RulesController@index']);
+
+
+Route::get('/api/products', ['uses' => 'ApiProductsController@index']);
+Route::get('/api/products/rules', ['uses' => 'ApiProductsController@rules']);
+Route::post('/api/products/update', ['uses' => 'ApiProductsController@update']);

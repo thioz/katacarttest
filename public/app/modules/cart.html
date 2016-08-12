@@ -1,0 +1,82 @@
+
+<div class="col-lg-6">
+	<div class="form col-lg-12">
+		<div class="form-group">
+			<label class="form-label">Select product</label>
+			<select class="form-control" ng-model="newitem.product" ng-change="changeProduct()" ng-options="prod as prod.description for prod in products"></select>
+		</div>
+	</div>
+	<div class="form" ng-show="newitem.product">
+		<div class="col-lg-12">
+			<h4>Add : {{newitem.item.description}}</h4>
+			<table class="table table-responsive table-bordered">
+				<thead>
+					<tr>
+						<th>Quantity</th>
+						<th>Unitprice</th>
+						<th>Totalprice</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="number" ng-model="newitem.item.quantity" class="form-control"/> 
+						</td>
+						<td>
+							<span>{{newitem.item.unitprice| currency : '&euro;' : 2}}/{{newitem.item.unitdescription}}</span>
+						</td>
+						<td>
+							{{ ((newitem.item.unitprice / newitem.item.unit) * newitem.item.quantity) | currency : '&euro;' : 2}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-success" ng-click="addToCart()">Add item</button>
+		</div>
+	</div>
+	<div class="form col-lg-12">
+		<h4>Rules:</h4>
+		
+		<div class="form-group" ng-repeat="rule in rules">
+			<div class="checkbox">
+				<label><input type="checkbox" ng-change="updateCart()" ng-model="cartdata.rules[''+ rule.id +'']"  ng-value=" {{rule.id}} ">{{rule.description}}</label>
+			</div>
+			
+
+		</div>
+	</div>
+</div>
+<div class="col-lg-6">
+
+	<h2>Cart items</h2>
+	<div class="alert alert-info" ng-show="cart.items.length == 0">
+		Your cart is empty ... try to add some items
+	</div>
+	<div class="col-lg-12" ng-show="cart.items.length > 0">
+		<table class="table table-responsive table-bordered">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Quantity</th>
+					<th>Unitprice</th>
+					<th>Totalprice</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in cart.items">
+					<td>{{item.description}}</td>
+					<td>{{item.quantity}}</td>
+					<td>{{item.unitprice| currency : '&euro;' : 2 }}/ {{item.unit}} {{item.unitdescription}}</td>
+					<td>{{item.amount| currency : '&euro;' : 2 }}</td>
+				</tr>
+				<tr class="s">
+					<td><strong>Total</strong></td>
+					<td></td>
+					<td></td>
+					<td><strong>{{cart.total| currency : '&euro;' : 2 }}</strong></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+
+</div>
